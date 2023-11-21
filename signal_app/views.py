@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from .models import Users
 from .pagination import Pagination
 
+
 class user_methods(viewsets.ModelViewSet, Pagination) :
 
     def get_data(self, request) :
@@ -42,9 +43,6 @@ class user_methods(viewsets.ModelViewSet, Pagination) :
             return HttpResponse("Added")
         else :
             return HttpResponse("not added")
-
-        # You need to move the JsonResponse outside of the if-else block
-        return JsonResponse(serializer_data.data, safe=False)
 
     def delete_data(self, request, target_id) :
         model_object = Users.objects.get(id=target_id)
